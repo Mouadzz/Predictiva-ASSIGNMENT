@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:predictiva/app.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   runApp(

@@ -4,11 +4,34 @@ import 'package:predictiva/src/dashboard/presentation/widgets/open_trades/open_t
 import 'package:predictiva/src/dashboard/presentation/widgets/open_trades/open_trades_list_widget.dart';
 import 'package:predictiva/src/dashboard/presentation/widgets/open_trades/open_trades_pagination_widget.dart';
 
-class OpenTradesWidget extends StatelessWidget {
-  const OpenTradesWidget({super.key});
+class OpenTradesWidget extends StatefulWidget {
+  const OpenTradesWidget({required this.dropDownController, super.key});
+
+  final OverlayPortalController dropDownController;
+
+  @override
+  State<OpenTradesWidget> createState() => _OpenTradesWidgetState();
+}
+
+class _OpenTradesWidgetState extends State<OpenTradesWidget> {
+  int tradesPerPage = 5;
+  int currentPage = 1;
+  late List<String> trades;
+  late int totalPages;
+
+  @override
+  void initState() {
+    trades = List.generate(30, (index) => 'trade-${index + 1}');
+    totalPages = (trades.length / tradesPerPage).ceil();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final startIndex = ((currentPage - 1) * tradesPerPage) + 1;
+    var endIndex = currentPage * tradesPerPage;
+    endIndex = endIndex > trades.length ? trades.length : endIndex;
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
@@ -18,9 +41,23 @@ class OpenTradesWidget extends StatelessWidget {
       ),
       child: Column(
         children: [
-          OpenTradesHeaderWidget(),
-          OpenTradesListWidget(),
-          OpenTradesPaginationWidget(),
+          OpenTradesHeaderWidget(dropDownController: widget.dropDownController),
+          OpenTradesListWidget(
+            currentPageTrades: trades.sublist(startIndex - 1, endIndex),
+          ),
+          OpenTradesPaginationWidget(
+            paginationText: '$startIndex - $endIndex of ${trades.length}',
+            onBack: (currentPage > 1)
+                ? () => setState(() {
+                      currentPage -= 1;
+                    })
+                : null,
+            onForward: (currentPage < totalPages)
+                ? () => setState(() {
+                      currentPage += 1;
+                    })
+                : null,
+          ),
         ],
       ),
     );

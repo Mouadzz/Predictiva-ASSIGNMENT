@@ -5,30 +5,42 @@ import 'package:predictiva/src/dashboard/presentation/widgets/dashboard_header_w
 import 'package:predictiva/src/dashboard/presentation/widgets/open_trades/open_trades_widget.dart';
 import 'package:predictiva/src/dashboard/presentation/widgets/summary/summary_widget.dart';
 
-class DashboardPage extends StatelessWidget {
+class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
 
   @override
+  State<DashboardPage> createState() => _DashboardPageState();
+}
+
+class _DashboardPageState extends State<DashboardPage> {
+  final dropDownController = OverlayPortalController();
+
+  @override
   Widget build(BuildContext context) {
-    return OrientationBuilder(
-      builder: (context, orientation) {
-        final useMobileLayout = SizeConfig.useMobileLayout;
-        return Scaffold(
-          appBar: TopNavigationWidget(useMobileLayout: useMobileLayout),
-          body: SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 4.w),
-            child: Column(
-              children: [
-                const DashboardHeaderWidget(),
-                SummaryWidget(useMobileLayout: useMobileLayout),
-                const SizedBox(height: 24),
-                const OpenTradesWidget(),
-                const SizedBox(height: 100),
-              ],
+    return GestureDetector(
+      onTap: dropDownController.hide,
+      child: OrientationBuilder(
+        builder: (context, orientation) {
+          final useMobileLayout = SizeConfig.useMobileLayout;
+          return Scaffold(
+            appBar: TopNavigationWidget(useMobileLayout: useMobileLayout),
+            body: SafeArea(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  children: [
+                    const DashboardHeaderWidget(),
+                    SummaryWidget(useMobileLayout: useMobileLayout),
+                    const SizedBox(height: 24),
+                    OpenTradesWidget(dropDownController: dropDownController),
+                    const SizedBox(height: 100),
+                  ],
+                ),
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

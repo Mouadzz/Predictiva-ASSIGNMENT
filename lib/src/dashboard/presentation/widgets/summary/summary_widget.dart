@@ -57,8 +57,8 @@ class SummaryWidget extends StatelessWidget {
     required String value,
     Widget? figureState,
   }) =>
-      SizedBox(
-        height: 87,
+      Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -92,8 +92,7 @@ class SummaryWidget extends StatelessWidget {
       );
 
   Widget subscriptionExpiry() => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        height: 87,
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 32),
         decoration: const BoxDecoration(
           color: AppTheme.dark2,
           border: Border(top: BorderSide(color: AppTheme.stroke)),

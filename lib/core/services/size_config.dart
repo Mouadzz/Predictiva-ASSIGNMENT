@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class SizeConfig {
@@ -9,13 +10,18 @@ class SizeConfig {
   void init(BuildContext context, Orientation orientation) {
     _mediaQueryData = MediaQuery.of(context);
 
-    screenWidth = _mediaQueryData.size.width;
-    screenHeight = _mediaQueryData.size.height;
+    if (orientation == Orientation.portrait || kIsWeb) {
+      screenWidth = _mediaQueryData.size.width;
+      screenHeight = _mediaQueryData.size.height;
+    } else {
+      screenWidth = _mediaQueryData.size.height;
+      screenHeight = _mediaQueryData.size.width;
+    }
 
     // to decide whether we want mobile landscape to be [Desktop Layout]
     // _mediaQueryData.size.shortestSide < 600;
     if ((orientation == Orientation.portrait && screenWidth < 600) ||
-        (orientation == Orientation.landscape && screenWidth < 600)) {
+        (orientation == Orientation.landscape && screenHeight < 600)) {
       layoutType = LayoutType.mobile;
     } else {
       layoutType = LayoutType.desktop;
