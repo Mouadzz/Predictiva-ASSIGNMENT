@@ -1,3 +1,5 @@
+import 'package:predictiva/src/dashboard/domain/entities/order_entity.dart';
+
 class FilterParams {
   FilterParams({
     this.endDate,
@@ -6,8 +8,8 @@ class FilterParams {
     this.startDate,
   });
 
-  String? symbol;
-  String? price;
+  TradingSymbol? symbol;
+  double? price;
   DateTime? startDate;
   DateTime? endDate;
 }

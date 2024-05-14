@@ -2,11 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:predictiva/core/core.dart';
-import 'package:predictiva/src/dashboard/presentation/widgets/open_trades/filter_drop_down/end_date_button.dart';
-import 'package:predictiva/src/dashboard/presentation/widgets/open_trades/filter_drop_down/filter_params_model.dart';
-import 'package:predictiva/src/dashboard/presentation/widgets/open_trades/filter_drop_down/price_input_field.dart';
-import 'package:predictiva/src/dashboard/presentation/widgets/open_trades/filter_drop_down/start_date_button.dart';
-import 'package:predictiva/src/dashboard/presentation/widgets/open_trades/filter_drop_down/symbol_button.dart';
+import 'package:predictiva/src/dashboard/dashboard.dart';
 
 class FilterDropDownWidget extends StatefulWidget {
   const FilterDropDownWidget({
@@ -30,9 +26,11 @@ class _FilterDropDownWidgetState extends State<FilterDropDownWidget> {
   void initState() {
     filterParams = widget.filterParams;
     textEditingController
-      ..text = widget.filterParams.price ?? ''
+      ..text = widget.filterParams.price != null
+          ? widget.filterParams.price.toString()
+          : ''
       ..addListener(() {
-        filterParams.price = textEditingController.text;
+        filterParams.price = double.tryParse(textEditingController.text);
       });
     super.initState();
   }

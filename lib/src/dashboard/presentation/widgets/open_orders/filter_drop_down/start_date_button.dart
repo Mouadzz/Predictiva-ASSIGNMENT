@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:predictiva/core/core.dart';
-import 'package:predictiva/core/utils/date_formatter.dart';
 
 class StartDateButton extends StatefulWidget {
   const StartDateButton({
@@ -32,7 +31,7 @@ class _StartDateButtonState extends State<StartDateButton> {
         onTap: () async {
           final returnedDate = await showDatePicker(
             context: context,
-            initialDate: DateTime.now(),
+            initialDate: widget.initialDate,
             firstDate: DateTime.parse('2015-01-01'),
             lastDate: DateTime.now(),
           );

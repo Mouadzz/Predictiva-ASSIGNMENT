@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:predictiva/core/common/widgets/top_navigation_widget.dart';
 import 'package:predictiva/core/core.dart';
-import 'package:predictiva/src/dashboard/presentation/widgets/dashboard_header_widget.dart';
-import 'package:predictiva/src/dashboard/presentation/widgets/open_trades/open_trades_widget.dart';
-import 'package:predictiva/src/dashboard/presentation/widgets/summary/summary_widget.dart';
+import 'package:predictiva/src/dashboard/dashboard.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -28,7 +25,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   const DashboardHeaderWidget(),
                   SummaryWidget(useMobileLayout: useMobileLayout),
                   const SizedBox(height: 24),
-                  const OpenTradesWidget(),
+                  const OpenOrdersWidget(),
                   const SizedBox(height: 100),
                 ],
               ),

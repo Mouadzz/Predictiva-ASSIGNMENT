@@ -1,26 +1,57 @@
 import 'package:flutter/material.dart';
 import 'package:predictiva/core/core.dart';
-import 'package:predictiva/src/dashboard/presentation/widgets/summary/figure_state_widget.dart';
+import 'package:predictiva/src/dashboard/dashboard.dart';
 
-class SummaryWidget extends StatelessWidget {
+class SummaryWidget extends StatefulWidget {
   const SummaryWidget({required this.useMobileLayout, super.key});
 
   final bool useMobileLayout;
 
   @override
+  State<SummaryWidget> createState() => _SummaryWidgetState();
+}
+
+class _SummaryWidgetState extends State<SummaryWidget> {
+  PortfolioEntity? portfolio;
+
+  @override
+  void initState() {
+    context.read<DashboardBloc>().add(GetPortfolioEvent());
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppTheme.dark4,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppTheme.stroke),
-      ),
-      child: Column(
-        children: [
-          figures(),
-          subscriptionExpiry(),
-        ],
-      ),
+    return BlocConsumer<DashboardBloc, DashboardState>(
+      listener: (context, state) {
+        if (state is PortfolioError) {
+          showSnackBar(
+            context,
+            'Failed to load portfolio:\n${state.failure.message}',
+          );
+        }
+
+        if (state is PortfolioLoaded) {
+          portfolio = state.newPortfolio;
+        }
+      },
+      builder: (context, state) {
+        return Container(
+          decoration: BoxDecoration(
+            color: AppTheme.dark4,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: AppTheme.stroke),
+          ),
+          child: portfolio != null
+              ? Column(
+                  children: [
+                    figures(),
+                    subscriptionExpiry(),
+                  ],
+                )
+              : const SizedBox(),
+        );
+      },
     );
   }
 
@@ -28,18 +59,24 @@ class SummaryWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            figure(title: 'Balance', value: r'$616.81'),
+            figure(
+              title: 'Balance',
+              value: r'$' + portfolio!.balance.toStringAsFixed(2),
+            ),
             const Divider(endIndent: 12),
             figure(
               title: 'Profits',
-              value: r'$86.03',
-              figureState: const FigureStateWidget(
-                percent: 8,
+              value: r'$' + portfolio!.profit.toStringAsFixed(2),
+              figureState: FigureStateWidget(
+                percent: portfolio!.profitPercentage,
                 success: true,
               ),
             ),
             const Divider(endIndent: 12),
-            figure(title: 'Assets', value: '12'),
+            figure(
+              title: 'Assets',
+              value: portfolio!.assets.toString(),
+            ),
           ],
         ),
       );

@@ -5,16 +5,30 @@ sealed class DashboardState {}
 
 final class DashboardInitial extends DashboardState {}
 
-// final class WallpaperListLoading extends DashboardState {}
+final class PortfolioLoading extends DashboardState {}
 
-// final class WallpaperListLoaded extends DashboardState {
-//   WallpaperListLoaded({required this.newWallpaperList});
+final class PortfolioLoaded extends DashboardState {
+  PortfolioLoaded({required this.newPortfolio});
 
-//   final WallpaperListEntity newWallpaperList;
-// }
+  final PortfolioEntity newPortfolio;
+}
 
-// final class WallpaperListError extends DashboardState {
-//   WallpaperListError({required this.failure});
+final class PortfolioError extends DashboardState {
+  PortfolioError({required this.failure});
 
-//   final Failure failure;
-// }
+  final Failure failure;
+}
+
+final class OrdersLoading extends DashboardState {}
+
+final class OrdersLoaded extends DashboardState {
+  OrdersLoaded({required this.newOrders});
+
+  final List<OrderEntity> newOrders;
+}
+
+final class OrdersError extends DashboardState {
+  OrdersError({required this.failure});
+
+  final Failure failure;
+}

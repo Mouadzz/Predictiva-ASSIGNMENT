@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:predictiva/core/core.dart';
 
-class OpenTradesPaginationWidget extends StatelessWidget {
-  const OpenTradesPaginationWidget({
+class OpenOrdersPaginationWidget extends StatelessWidget {
+  const OpenOrdersPaginationWidget({
     required this.onForward,
     required this.onBack,
     required this.paginationText,

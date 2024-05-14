@@ -1,5 +1,5 @@
 String formatDate(DateTime dateTime) {
-  final month = months[dateTime.month];
+  final month = months[dateTime.month - 1];
   final day = dateTime.day.toString();
   final year = dateTime.year.toString();
 

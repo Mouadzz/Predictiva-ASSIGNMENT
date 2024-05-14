@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:predictiva/core/core.dart';
+import 'package:predictiva/src/dashboard/dashboard.dart';
 
 class SymbolButton extends StatefulWidget {
   const SymbolButton({
@@ -8,16 +9,15 @@ class SymbolButton extends StatefulWidget {
     this.initialValue,
   });
 
-  final void Function(String?) onSymbolChange;
-  final String? initialValue;
+  final void Function(TradingSymbol?) onSymbolChange;
+  final TradingSymbol? initialValue;
 
   @override
   State<SymbolButton> createState() => _SymbolButtonState();
 }
 
 class _SymbolButtonState extends State<SymbolButton> {
-  String? selectedSymbol;
-  List<String> symbolList = ['Symbol 1', 'Symbol 2', 'Symbol 3'];
+  TradingSymbol? selectedSymbol;
 
   @override
   void initState() {
@@ -38,7 +38,7 @@ class _SymbolButtonState extends State<SymbolButton> {
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
             isDense: true,
             dropdownColor: AppTheme.dark6,
-            value: selectedSymbol,
+            value: selectedSymbol?.name,
             icon: Image.asset(
               'assets/images/nav-arrow-down.png',
               width: 12.sp,
@@ -52,11 +52,11 @@ class _SymbolButtonState extends State<SymbolButton> {
                 color: AppTheme.grey2,
               ),
             ),
-            items: symbolList.map((String symbol) {
+            items: TradingSymbol.values.map((symbol) {
               return DropdownMenuItem<String>(
-                value: symbol,
+                value: symbol.name,
                 child: Text(
-                  symbol,
+                  symbol.name,
                   style: TextStyle(
                     fontSize: 9.sp,
                     color: AppTheme.grey2,
@@ -66,7 +66,13 @@ class _SymbolButtonState extends State<SymbolButton> {
             }).toList(),
             onChanged: (value) {
               setState(() {
-                selectedSymbol = value;
+                if (value == 'NONE') {
+                  selectedSymbol = null;
+                } else {
+                  selectedSymbol =
+                      value != null ? OrderModel.parseSymbol(value) : null;
+                }
+
                 widget.onSymbolChange(selectedSymbol);
               });
             },

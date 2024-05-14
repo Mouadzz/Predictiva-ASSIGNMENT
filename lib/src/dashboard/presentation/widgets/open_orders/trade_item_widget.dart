@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:predictiva/core/core.dart';
+import 'package:predictiva/src/dashboard/dashboard.dart';
 
-class TradeItemWidget extends StatelessWidget {
-  const TradeItemWidget({required this.symbol, super.key});
+class OrderItemWidget extends StatelessWidget {
+  const OrderItemWidget({required this.order, super.key});
 
-  final String symbol;
+  final OrderEntity order;
 
   @override
   Widget build(BuildContext context) {
@@ -13,20 +14,20 @@ class TradeItemWidget extends StatelessWidget {
         const Divider(),
         const SizedBox(height: 16),
         Padding(
-          padding: EdgeInsets.only(right: 16),
+          padding: const EdgeInsets.only(right: 16),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                symbol,
-                style: TextStyle(
+                order.symbol.name,
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
               ),
               Text(
-                '1.5636',
-                style: TextStyle(
+                order.price.toString(),
+                style: const TextStyle(
                   fontSize: 16,
                   color: Colors.white,
                 ),
@@ -55,9 +56,9 @@ class TradeItemWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              const Text(
-                '19 Dec, 2023',
-                style: TextStyle(
+              Text(
+                formatDate(order.creationTime),
+                style: const TextStyle(
                   fontSize: 16,
                   color: AppTheme.grey2,
                 ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:predictiva/core/core.dart';
 
-class OpenTradesHeaderWidget extends StatelessWidget {
-  const OpenTradesHeaderWidget({required this.onFilterTap, super.key});
+class OpenOrdersHeaderWidget extends StatelessWidget {
+  const OpenOrdersHeaderWidget({required this.onFilterTap, super.key});
 
   final void Function() onFilterTap;
 
