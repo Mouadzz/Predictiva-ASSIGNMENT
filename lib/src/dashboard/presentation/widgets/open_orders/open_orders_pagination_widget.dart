@@ -56,7 +56,7 @@ class OpenOrdersPaginationWidget extends StatelessWidget {
           width: 24,
           height: 24,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4),
+            borderRadius: BorderRadius.circular(AppSizes.smRadius),
             border: Border.all(color: AppTheme.stroke),
           ),
           child: Center(

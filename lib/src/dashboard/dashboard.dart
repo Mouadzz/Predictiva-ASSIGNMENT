@@ -1,5 +1,6 @@
 export 'dashboard.dart';
 export 'data/datasources/dashboard_remote_data_source.dart';
+export 'data/models/filter_params_model.dart';
 export 'data/models/order_model.dart';
 export 'data/models/orders_data_model.dart';
 export 'data/models/portfolio_data_model.dart';
@@ -17,7 +18,6 @@ export 'presentation/widgets/dashboard_header_widget.dart';
 export 'presentation/widgets/open_orders/filter_drop_down/drop_down_controller.dart';
 export 'presentation/widgets/open_orders/filter_drop_down/end_date_button.dart';
 export 'presentation/widgets/open_orders/filter_drop_down/filter_drop_down_widget.dart';
-export 'presentation/widgets/open_orders/filter_drop_down/filter_params_model.dart';
 export 'presentation/widgets/open_orders/filter_drop_down/price_input_field.dart';
 export 'presentation/widgets/open_orders/filter_drop_down/start_date_button.dart';
 export 'presentation/widgets/open_orders/filter_drop_down/symbol_button.dart';

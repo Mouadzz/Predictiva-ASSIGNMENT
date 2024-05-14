@@ -1,24 +1,21 @@
 import 'package:flutter/material.dart';
 
 class SizeConfig {
-  static late double screenWidth;
-  static late double screenHeight;
-  static late double shortestSide;
+  static double maxWidth = 1536;
 
+  static late double width;
+  static late double height;
+  static late double shortestSide;
   static late LayoutType layoutType;
   static late MediaQueryData _mediaQueryData;
 
   void init(BuildContext context, Orientation orientation) {
     _mediaQueryData = MediaQuery.of(context);
 
-    screenWidth = _mediaQueryData.size.width;
-    screenHeight = _mediaQueryData.size.height;
-    shortestSide = _mediaQueryData.size.shortestSide;
+    width = _mediaQueryData.size.width;
+    height = _mediaQueryData.size.height;
 
-    // to decide whether we want mobile landscape to be [Desktop Layout]
-    // shortestSide < 600;
-    if ((orientation == Orientation.portrait && screenWidth < 600) ||
-        (orientation == Orientation.landscape && screenHeight < 600)) {
+    if (width < 800) {
       layoutType = LayoutType.mobile;
     } else {
       layoutType = LayoutType.desktop;

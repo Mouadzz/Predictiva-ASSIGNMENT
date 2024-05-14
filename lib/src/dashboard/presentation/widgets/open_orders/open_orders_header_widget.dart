@@ -33,7 +33,7 @@ class OpenOrdersHeaderWidget extends StatelessWidget {
           width: 32,
           height: 32,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(AppSizes.mdRadius),
             border: Border.all(color: AppTheme.stroke),
           ),
           child: Center(

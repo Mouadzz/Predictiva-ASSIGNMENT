@@ -5,16 +5,22 @@ class FigureStateWidget extends StatelessWidget {
   const FigureStateWidget({
     required this.success,
     required this.percent,
+    required this.useMobileLayout,
     super.key,
   });
 
   final bool success;
   final int percent;
+  final bool useMobileLayout;
 
   @override
   Widget build(BuildContext context) {
+    final iconSize = useMobileLayout ? AppSizes.smIcon : AppSizes.mdIcon;
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSizes.xsPadding,
+        vertical: AppSizes.dxsPadding,
+      ),
       decoration: BoxDecoration(
         color: AppTheme.dark2,
         borderRadius: BorderRadius.circular(30),
@@ -24,14 +30,14 @@ class FigureStateWidget extends StatelessWidget {
         children: [
           Image.asset(
             'assets/images/${success ? 'arrow-up-right' : 'arrow-down-left'}.png',
-            width: 16,
-            height: 16,
+            width: iconSize,
+            height: iconSize,
           ),
-          const SizedBox(width: 4),
+          const SizedBox(width: AppSizes.dxsPadding),
           Text(
             '$percent%',
             style: TextStyle(
-              fontSize: 14,
+              fontSize: AppSizes.smText,
               color: success ? AppTheme.success : AppTheme.error,
             ),
           ),

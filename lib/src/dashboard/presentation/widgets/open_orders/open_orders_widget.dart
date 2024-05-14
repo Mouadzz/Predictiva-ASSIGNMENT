@@ -35,7 +35,7 @@ class _OpenOrdersWidgetState extends State<OpenOrdersWidget> {
         if (state is OrdersError) {
           showSnackBar(
             context,
-            'Failed to load orders:\n\n${state.failure.message}',
+            'Failed to load orders :\n\n${state.failure.message}',
           );
         }
 
@@ -53,7 +53,7 @@ class _OpenOrdersWidgetState extends State<OpenOrdersWidget> {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           decoration: BoxDecoration(
             color: AppTheme.dark4,
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(AppSizes.lgRadius),
             border: Border.all(color: AppTheme.stroke),
           ),
           child: Stack(

@@ -43,7 +43,7 @@ class _EndDateButtonState extends State<EndDateButton> {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(AppSizes.mdRadius),
             border: Border.all(color: AppTheme.stroke),
           ),
           child: Row(
@@ -52,14 +52,14 @@ class _EndDateButtonState extends State<EndDateButton> {
               Text(
                 selectedDate == null ? 'End date' : formatDate(selectedDate!),
                 style: TextStyle(
-                  fontSize: 9.sp,
+                  fontSize: 14,
                   color: AppTheme.grey2,
                 ),
               ),
               Image.asset(
                 'assets/images/calendar.png',
-                width: 12.sp,
-                height: 12.sp,
+                width: 20,
+                height: 20,
               ),
             ],
           ),

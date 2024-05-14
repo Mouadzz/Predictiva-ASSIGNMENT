@@ -7,7 +7,7 @@ export 'common/widgets/top_navigation_widget.dart';
 export 'errors/error_messages.dart';
 export 'errors/exceptions.dart';
 export 'errors/failure.dart';
-export 'extensions/num_extension.dart';
+export 'services/app_sizes.dart';
 export 'services/router.dart';
 export 'services/size_config.dart';
 export 'services/theme.dart';

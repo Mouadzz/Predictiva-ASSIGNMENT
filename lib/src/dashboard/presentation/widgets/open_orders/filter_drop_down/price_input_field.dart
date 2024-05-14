@@ -11,13 +11,13 @@ class PriceInputField extends StatelessWidget {
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(AppSizes.mdRadius),
           border: Border.all(color: AppTheme.stroke),
         ),
         child: TextField(
           controller: textEditingController,
           style: TextStyle(
-            fontSize: 9.sp,
+            fontSize: 14,
             color: AppTheme.grey2,
           ),
           onTapOutside: (_) {
@@ -34,7 +34,7 @@ class PriceInputField extends StatelessWidget {
             hintTextDirection: TextDirection.ltr,
             border: InputBorder.none,
             hintStyle: TextStyle(
-              fontSize: 9.sp,
+              fontSize: 14,
               color: AppTheme.grey2,
             ),
           ),

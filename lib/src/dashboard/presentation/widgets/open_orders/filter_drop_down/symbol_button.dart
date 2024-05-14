@@ -30,7 +30,7 @@ class _SymbolButtonState extends State<SymbolButton> {
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(AppSizes.mdRadius),
           border: Border.all(color: AppTheme.stroke),
         ),
         child: DropdownButtonHideUnderline(
@@ -41,14 +41,14 @@ class _SymbolButtonState extends State<SymbolButton> {
             value: selectedSymbol?.name,
             icon: Image.asset(
               'assets/images/nav-arrow-down.png',
-              width: 12.sp,
-              height: 12.sp,
+              width: 20,
+              height: 20,
             ),
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(AppSizes.mdRadius),
             hint: Text(
               'Symbol',
               style: TextStyle(
-                fontSize: 9.sp,
+                fontSize: 14,
                 color: AppTheme.grey2,
               ),
             ),
@@ -58,7 +58,7 @@ class _SymbolButtonState extends State<SymbolButton> {
                 child: Text(
                   symbol.name,
                   style: TextStyle(
-                    fontSize: 9.sp,
+                    fontSize: 14,
                     color: AppTheme.grey2,
                   ),
                 ),

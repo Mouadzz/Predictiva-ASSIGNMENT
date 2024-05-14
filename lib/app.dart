@@ -13,11 +13,14 @@ class _PredictivaAppState extends State<PredictivaApp> {
   Widget build(BuildContext context) {
     return Sizer(
       builder: () {
-        return MaterialApp(
-          title: 'Predictiva',
-          theme: AppTheme.theme,
-          initialRoute: '/dashboard',
-          onGenerateRoute: generateRoute,
+        return Container(
+          constraints: BoxConstraints(maxWidth: SizeConfig.maxWidth),
+          child: MaterialApp(
+            title: 'Predictiva',
+            theme: AppTheme.theme,
+            initialRoute: '/dashboard',
+            onGenerateRoute: generateRoute,
+          ),
         );
       },
     );

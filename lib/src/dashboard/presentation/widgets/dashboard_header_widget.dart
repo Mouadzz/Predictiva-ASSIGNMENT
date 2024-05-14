@@ -2,37 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:predictiva/core/core.dart';
 
 class DashboardHeaderWidget extends StatelessWidget {
-  const DashboardHeaderWidget({super.key});
+  const DashboardHeaderWidget({required this.useMobileLayout, super.key});
+
+  final bool useMobileLayout;
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return Container(
-          width: constraints.maxWidth,
-          padding: const EdgeInsets.symmetric(vertical: 32),
-          child: const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Hi Robin,',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 24,
-                ),
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Padding(
+        padding: EdgeInsets.only(
+          top: useMobileLayout ? AppSizes.txlPadding : AppSizes.mxlPadding,
+          bottom: useMobileLayout ? AppSizes.txlPadding : AppSizes.qxlPadding,
+        ),
+        child: const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Hi Robin,',
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: AppSizes.xlText,
               ),
-              SizedBox(height: 8),
-              Text(
-                'Here is an overview of your account activities.',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: AppTheme.grey1,
-                ),
+            ),
+            SizedBox(height: AppSizes.xsPadding),
+            Text(
+              'Here is an overview of your account activities.',
+              style: TextStyle(
+                fontSize: AppSizes.mdText,
+                color: AppTheme.grey1,
               ),
-            ],
-          ),
-        );
-      },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

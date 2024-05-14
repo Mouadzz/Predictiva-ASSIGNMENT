@@ -39,13 +39,13 @@ class _FilterDropDownWidgetState extends State<FilterDropDownWidget> {
   Widget build(BuildContext context) {
     return OrientationBuilder(
       builder: (context, orientation) {
-        final double width = min(SizeConfig.screenWidth - 80, 467);
+        final double width = min(SizeConfig.width - 80, 467);
         return Container(
           margin: const EdgeInsets.only(top: 55),
           padding: EdgeInsets.all(width * 0.04),
           decoration: BoxDecoration(
             color: AppTheme.dark6,
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(AppSizes.mdRadius),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.4),
@@ -76,7 +76,7 @@ class _FilterDropDownWidgetState extends State<FilterDropDownWidget> {
                 child: Text(
                   'Date Range',
                   style: TextStyle(
-                    fontSize: 11.sp,
+                    fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -119,12 +119,12 @@ class _FilterDropDownWidgetState extends State<FilterDropDownWidget> {
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               color: AppTheme.greenAccent,
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(AppSizes.mdRadius),
             ),
             child: Text(
               'Filter table',
               style: TextStyle(
-                fontSize: 10.5.sp,
+                fontSize: 14,
                 fontWeight: FontWeight.w600,
                 color: Colors.white,
               ),
