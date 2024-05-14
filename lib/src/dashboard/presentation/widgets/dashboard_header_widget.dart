@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:predictiva/core/core.dart';
 
 class DashboardHeaderWidget extends StatelessWidget {
   const DashboardHeaderWidget({super.key});
@@ -23,7 +24,10 @@ class DashboardHeaderWidget extends StatelessWidget {
               SizedBox(height: 8),
               Text(
                 'Here is an overview of your account activities.',
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(
+                  fontSize: 16,
+                  color: AppTheme.grey1,
+                ),
               ),
             ],
           ),

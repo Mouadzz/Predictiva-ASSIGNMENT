@@ -13,7 +13,6 @@ class AppTheme {
   static const Color error = Color(0XFFCC0C0C);
   static const Color success = Color(0XFF00AC3A);
   static const Color greenAccent = Color(0XFF00BCAF);
-
   static const Color transparent = Colors.transparent;
 
   static final theme = ThemeData(
@@ -22,6 +21,17 @@ class AppTheme {
     highlightColor: transparent,
     brightness: Brightness.dark,
     scaffoldBackgroundColor: dark,
+    shadowColor: transparent,
+    dividerTheme: const DividerThemeData(color: stroke, thickness: 1, space: 1),
+    colorScheme: const ColorScheme.dark(
+      primary: Colors.greenAccent,
+      surfaceTint: transparent,
+    ),
+    datePickerTheme: const DatePickerThemeData(
+      backgroundColor: dark5,
+      surfaceTintColor: transparent,
+      dividerColor: stroke,
+    ),
     appBarTheme: const AppBarTheme(
       backgroundColor: dark3,
       elevation: 0,

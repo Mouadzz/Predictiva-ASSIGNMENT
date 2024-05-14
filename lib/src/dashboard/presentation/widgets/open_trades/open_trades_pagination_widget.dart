@@ -23,7 +23,7 @@ class OpenTradesPaginationWidget extends StatelessWidget {
         children: [
           Text(
             paginationText,
-            style: const TextStyle(fontSize: 14),
+            style: const TextStyle(fontSize: 14, color: AppTheme.grey1),
           ),
           Row(
             children: [

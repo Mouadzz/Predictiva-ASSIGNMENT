@@ -1,2 +1,2 @@
 export 'presentation/bloc/dashboard_bloc.dart';
-export 'presentation/pages/home_page.dart';
+export 'presentation/pages/dashboard_page.dart';

@@ -10,10 +10,7 @@ class TradeItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Divider(
-          thickness: 1,
-          height: 0,
-        ),
+        const Divider(),
         const SizedBox(height: 16),
         Padding(
           padding: EdgeInsets.only(right: 16),

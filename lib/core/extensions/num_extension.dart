@@ -15,5 +15,5 @@ extension SizeExtension on num {
   double get h => this * SizeConfig.screenHeight / 100;
 
   /// Calculates the sp (Scalable Pixel) depending on the device's screen size
-  double get sp => this * (SizeConfig.screenWidth / 3) / 100;
+  double get sp => this * (SizeConfig.shortestSide / 3) / 100;
 }

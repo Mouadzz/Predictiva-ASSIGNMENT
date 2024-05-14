@@ -29,11 +29,7 @@ class SummaryWidget extends StatelessWidget {
         child: Column(
           children: [
             figure(title: 'Balance', value: r'$616.81'),
-            const Divider(
-              thickness: 1,
-              height: 0,
-              endIndent: 12,
-            ),
+            const Divider(endIndent: 12),
             figure(
               title: 'Profits',
               value: r'$86.03',
@@ -42,11 +38,7 @@ class SummaryWidget extends StatelessWidget {
                 success: true,
               ),
             ),
-            const Divider(
-              thickness: 1,
-              height: 0,
-              endIndent: 12,
-            ),
+            const Divider(endIndent: 12),
             figure(title: 'Assets', value: '12'),
           ],
         ),
