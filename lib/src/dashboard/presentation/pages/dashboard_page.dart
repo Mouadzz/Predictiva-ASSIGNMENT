@@ -18,6 +18,8 @@ class _DashboardPageState extends State<DashboardPage> {
         return Scaffold(
           appBar: TopNavigationWidget(isMobile: isMobile),
           body: SafeArea(
+            top: false,
+            bottom: false,
             child: Align(
               alignment: Alignment.topCenter,
               child: Container(
