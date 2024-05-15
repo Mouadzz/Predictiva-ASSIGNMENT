@@ -5,20 +5,24 @@ import 'package:predictiva/src/dashboard/dashboard.dart';
 class OrderWidget extends StatelessWidget {
   const OrderWidget({
     required this.order,
-    required this.useMobileLayout,
+    required this.isMobileLayout,
     super.key,
   });
 
   final OrderEntity order;
-  final bool useMobileLayout;
+  final bool isMobileLayout;
 
   @override
   Widget build(BuildContext context) {
-    return useMobileLayout ? mobileLayout() : desktopLayout();
+    return isMobileLayout ? mobileLayout() : desktopLayout();
   }
 
   Widget desktopLayout() => Container(
-        padding: const EdgeInsets.symmetric(vertical: AppSizes.dxlPadding),
+        padding: EdgeInsets.symmetric(
+          vertical: SizeConfig.isTabletLayout
+              ? AppSizes.xlPadding
+              : AppSizes.dxlPadding,
+        ),
         margin: const EdgeInsets.only(bottom: AppSizes.dxsPadding),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppSizes.mdRadius),
@@ -27,20 +31,26 @@ class OrderWidget extends StatelessWidget {
         child: Align(
           child: Row(
             children: [
-              const Expanded(child: SizedBox()),
+              expandWrapper(
+                flex: SizeConfig.isTabletLayout ? 1 : 2,
+                child: const SizedBox(),
+              ),
               expandWrapper(child: symbolWidget()),
               expandWrapper(child: textWidget(order.price.toString())),
               expandWrapper(child: textWidget(order.type)),
               expandWrapper(child: sellButtonWidget()),
               expandWrapper(child: textWidget(order.quantity.toString())),
-              expandWrapper(child: dateWidget()),
+              expandWrapper(
+                child: dateWidget(),
+                flex: 8,
+              ),
             ],
           ),
         ),
       );
 
-  Widget expandWrapper({required Widget child}) => Expanded(
-        flex: 5,
+  Widget expandWrapper({required Widget child, int flex = 7}) => Expanded(
+        flex: flex,
         child: Align(alignment: Alignment.centerLeft, child: child),
       );
 
@@ -75,13 +85,16 @@ class OrderWidget extends StatelessWidget {
 
   Widget textWidget(String value) => Text(
         value,
-        style: const TextStyle(fontSize: AppSizes.mdText),
+        style: TextStyle(
+          fontSize:
+              SizeConfig.isTabletLayout ? AppSizes.smText : AppSizes.mdText,
+        ),
       );
 
   Widget sellButtonWidget() => Container(
         padding: EdgeInsets.symmetric(
-          horizontal: useMobileLayout ? AppSizes.xsPadding : AppSizes.smPadding,
-          vertical: useMobileLayout ? AppSizes.dxsPadding : AppSizes.xsPadding,
+          horizontal: isMobileLayout ? AppSizes.xsPadding : AppSizes.smPadding,
+          vertical: isMobileLayout ? AppSizes.dxsPadding : AppSizes.xsPadding,
         ),
         decoration: BoxDecoration(
           color: AppTheme.dark5,
@@ -99,16 +112,18 @@ class OrderWidget extends StatelessWidget {
 
   Widget dateWidget() => Text(
         formatDate(order.creationTime),
-        style: const TextStyle(
-          fontSize: AppSizes.mdText,
+        style: TextStyle(
+          fontSize:
+              SizeConfig.isTabletLayout ? AppSizes.smText : AppSizes.mdText,
           color: AppTheme.grey2,
         ),
       );
 
   Widget symbolWidget() => Text(
         order.symbol.name,
-        style: const TextStyle(
-          fontSize: AppSizes.mdText,
+        style: TextStyle(
+          fontSize:
+              SizeConfig.isTabletLayout ? AppSizes.smText : AppSizes.mdText,
           fontWeight: FontWeight.w600,
         ),
       );

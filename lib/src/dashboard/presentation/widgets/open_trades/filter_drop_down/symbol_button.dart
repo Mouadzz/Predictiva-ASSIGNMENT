@@ -5,14 +5,14 @@ import 'package:predictiva/src/dashboard/dashboard.dart';
 class SymbolButton extends StatefulWidget {
   const SymbolButton({
     required this.onSymbolChange,
-    required this.useMobileLayout,
+    required this.isMobileLayout,
     super.key,
     this.initialValue,
   });
 
   final void Function(TradingSymbol?) onSymbolChange;
   final TradingSymbol? initialValue;
-  final bool useMobileLayout;
+  final bool isMobileLayout;
 
   @override
   State<SymbolButton> createState() => _SymbolButtonState();
@@ -29,7 +29,7 @@ class _SymbolButtonState extends State<SymbolButton> {
 
   @override
   Widget build(BuildContext context) {
-    final iconSize = widget.useMobileLayout ? AppSizes.smIcon : AppSizes.mdIcon;
+    final iconSize = widget.isMobileLayout ? AppSizes.smIcon : AppSizes.mdIcon;
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
@@ -39,7 +39,7 @@ class _SymbolButtonState extends State<SymbolButton> {
         child: DropdownButtonHideUnderline(
           child: DropdownButton(
             padding: EdgeInsets.symmetric(
-              horizontal: widget.useMobileLayout
+              horizontal: widget.isMobileLayout
                   ? AppSizes.smPadding
                   : AppSizes.lgPadding,
             ),
@@ -55,7 +55,7 @@ class _SymbolButtonState extends State<SymbolButton> {
               'Symbol',
               style: TextStyle(
                 fontSize:
-                    widget.useMobileLayout ? AppSizes.xsText : AppSizes.smText,
+                    widget.isMobileLayout ? AppSizes.xsText : AppSizes.smText,
                 color: AppTheme.grey2,
               ),
             ),
@@ -65,7 +65,7 @@ class _SymbolButtonState extends State<SymbolButton> {
                 child: Text(
                   symbol.name,
                   style: TextStyle(
-                    fontSize: widget.useMobileLayout
+                    fontSize: widget.isMobileLayout
                         ? AppSizes.xsText
                         : AppSizes.smText,
                     color: AppTheme.grey2,

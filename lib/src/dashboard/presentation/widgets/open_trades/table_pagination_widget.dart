@@ -6,13 +6,13 @@ class TablePaginationWidget extends StatelessWidget {
     required this.onForward,
     required this.onBack,
     required this.paginationText,
-    required this.useMobileLayout,
+    required this.isMobileLayout,
     super.key,
   });
 
   final void Function()? onForward;
   final void Function()? onBack;
-  final bool useMobileLayout;
+  final bool isMobileLayout;
   final String paginationText;
 
   @override
@@ -20,7 +20,7 @@ class TablePaginationWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(
         top: AppSizes.dxlPadding,
-        bottom: useMobileLayout ? AppSizes.dxlPadding : AppSizes.txlPadding,
+        bottom: isMobileLayout ? AppSizes.dxlPadding : AppSizes.txlPadding,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -28,7 +28,7 @@ class TablePaginationWidget extends StatelessWidget {
           Text(
             paginationText,
             style: TextStyle(
-              fontSize: useMobileLayout ? AppSizes.smText : AppSizes.mdText,
+              fontSize: isMobileLayout ? AppSizes.smText : AppSizes.mdText,
               color: AppTheme.grey1,
             ),
           ),

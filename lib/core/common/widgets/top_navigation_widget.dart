@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:predictiva/core/core.dart';
 
 class TopNavigationWidget extends StatelessWidget
     implements PreferredSizeWidget {
   const TopNavigationWidget({
-    required this.useMobileLayout,
+    required this.isMobileLayout,
     super.key,
   });
 
-  final bool useMobileLayout;
+  final bool isMobileLayout;
 
   @override
-  Size get preferredSize =>
-      Size.fromHeight(useMobileLayout ? kToolbarHeight : 99);
+  Size get preferredSize => Size.fromHeight(
+        isMobileLayout
+            ? 79
+            : SizeConfig.isTabletLayout
+                ? 89
+                : 99,
+      );
 
   @override
   Widget build(BuildContext context) {

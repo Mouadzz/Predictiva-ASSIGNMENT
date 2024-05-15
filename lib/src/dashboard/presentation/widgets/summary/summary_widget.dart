@@ -5,9 +5,9 @@ import 'package:predictiva/src/dashboard/presentation/widgets/summary/figures_la
 import 'package:predictiva/src/dashboard/presentation/widgets/summary/subscription_expiry_widget.dart';
 
 class SummaryWidget extends StatefulWidget {
-  const SummaryWidget({required this.useMobileLayout, super.key});
+  const SummaryWidget({required this.isMobileLayout, super.key});
 
-  final bool useMobileLayout;
+  final bool isMobileLayout;
 
   @override
   State<SummaryWidget> createState() => _SummaryWidgetState();
@@ -45,10 +45,10 @@ class _SummaryWidgetState extends State<SummaryWidget> {
                   children: [
                     FiguresLayoutWidget(
                       portfolio: portfolio,
-                      useMobileLayout: widget.useMobileLayout,
+                      isMobileLayout: widget.isMobileLayout,
                     ),
                     SubscriptionExpiryWidget(
-                      useMobileLayout: widget.useMobileLayout,
+                      isMobileLayout: widget.isMobileLayout,
                     ),
                   ],
                 )

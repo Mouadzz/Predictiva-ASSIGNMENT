@@ -14,27 +14,29 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     return OrientationBuilder(
       builder: (context, orientation) {
-        final useMobileLayout = SizeConfig.useMobileLayout;
+        final isMobileLayout = SizeConfig.isMobileLayout;
         return Scaffold(
-          appBar: TopNavigationWidget(useMobileLayout: useMobileLayout),
+          appBar: TopNavigationWidget(isMobileLayout: isMobileLayout),
           body: SafeArea(
-            child: Container(
+            child: Align(
               alignment: Alignment.topCenter,
-              constraints: BoxConstraints(maxWidth: SizeConfig.maxWidth),
-              child: SingleChildScrollView(
-                padding: EdgeInsets.symmetric(
-                  horizontal: useMobileLayout
-                      ? AppSizes.xlPadding
-                      : AppSizes.mxlPadding,
-                ),
-                child: Column(
-                  children: [
-                    DashboardHeaderWidget(useMobileLayout: useMobileLayout),
-                    SummaryWidget(useMobileLayout: useMobileLayout),
-                    const SizedBox(height: AppSizes.dxlPadding),
-                    OrdersTableWidget(useMobileLayout: useMobileLayout),
-                    const SizedBox(height: AppSizes.mxlPadding),
-                  ],
+              child: Container(
+                constraints: BoxConstraints(maxWidth: SizeConfig.maxWidth),
+                child: SingleChildScrollView(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: isMobileLayout
+                        ? AppSizes.xlPadding
+                        : AppSizes.mxlPadding,
+                  ),
+                  child: Column(
+                    children: [
+                      DashboardHeaderWidget(isMobileLayout: isMobileLayout),
+                      SummaryWidget(isMobileLayout: isMobileLayout),
+                      const SizedBox(height: AppSizes.dxlPadding),
+                      OrdersTableWidget(isMobileLayout: isMobileLayout),
+                      const SizedBox(height: AppSizes.mxlPadding),
+                    ],
+                  ),
                 ),
               ),
             ),

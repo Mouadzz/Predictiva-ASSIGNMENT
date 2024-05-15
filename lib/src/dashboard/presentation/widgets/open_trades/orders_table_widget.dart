@@ -4,9 +4,9 @@ import 'package:predictiva/src/dashboard/dashboard.dart';
 import 'package:predictiva/src/dashboard/presentation/widgets/open_trades/talbe_rows_widget.dart';
 
 class OrdersTableWidget extends StatefulWidget {
-  const OrdersTableWidget({required this.useMobileLayout, super.key});
+  const OrdersTableWidget({required this.isMobileLayout, super.key});
 
-  final bool useMobileLayout;
+  final bool isMobileLayout;
 
   @override
   State<OrdersTableWidget> createState() => _OrdersTableWidgetState();
@@ -48,7 +48,7 @@ class _OrdersTableWidgetState extends State<OrdersTableWidget> {
       builder: (context, state) {
         return Container(
           padding: EdgeInsets.symmetric(
-            horizontal: widget.useMobileLayout
+            horizontal: widget.isMobileLayout
                 ? AppSizes.xlPadding
                 : AppSizes.txlPadding,
           ),
@@ -62,15 +62,15 @@ class _OrdersTableWidgetState extends State<OrdersTableWidget> {
               Column(
                 children: [
                   TableHeaderWidget(
-                    useMobileLayout: widget.useMobileLayout,
+                    isMobileLayout: widget.isMobileLayout,
                     onFilterTap: dropDownController.toggle,
                   ),
                   TableRowsWidget(
                     orderList: orders.sublist(startIndex - 1, endIndex),
-                    useMobileLayout: widget.useMobileLayout,
+                    isMobileLayout: widget.isMobileLayout,
                   ),
                   TablePaginationWidget(
-                    useMobileLayout: widget.useMobileLayout,
+                    isMobileLayout: widget.isMobileLayout,
                     paginationText:
                         '$startIndex - $endIndex of ${orders.length}',
                     onBack: (currentPage > 1)

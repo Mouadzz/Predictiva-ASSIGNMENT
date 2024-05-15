@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:predictiva/core/core.dart';
 
 class DashboardHeaderWidget extends StatelessWidget {
-  const DashboardHeaderWidget({required this.useMobileLayout, super.key});
+  const DashboardHeaderWidget({required this.isMobileLayout, super.key});
 
-  final bool useMobileLayout;
+  final bool isMobileLayout;
 
   @override
   Widget build(BuildContext context) {
@@ -12,8 +12,8 @@ class DashboardHeaderWidget extends StatelessWidget {
       alignment: Alignment.centerLeft,
       child: Padding(
         padding: EdgeInsets.only(
-          top: useMobileLayout ? AppSizes.txlPadding : AppSizes.mxlPadding,
-          bottom: useMobileLayout ? AppSizes.txlPadding : AppSizes.qxlPadding,
+          top: isMobileLayout ? AppSizes.txlPadding : AppSizes.mxlPadding,
+          bottom: isMobileLayout ? AppSizes.txlPadding : AppSizes.qxlPadding,
         ),
         child: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,

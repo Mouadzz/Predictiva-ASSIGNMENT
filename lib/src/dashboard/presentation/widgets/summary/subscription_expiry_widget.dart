@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:predictiva/core/core.dart';
 
 class SubscriptionExpiryWidget extends StatelessWidget {
-  const SubscriptionExpiryWidget({required this.useMobileLayout, super.key});
+  const SubscriptionExpiryWidget({required this.isMobileLayout, super.key});
 
-  final bool useMobileLayout;
+  final bool isMobileLayout;
 
   @override
   Widget build(BuildContext context) {
-    final iconSize = useMobileLayout ? AppSizes.mdIcon : AppSizes.lgIcon;
+    final iconSize = isMobileLayout ? AppSizes.mdIcon : AppSizes.lgIcon;
     return Container(
       padding: EdgeInsets.symmetric(
-        vertical: useMobileLayout ? AppSizes.txlPadding : AppSizes.dxlPadding,
+        vertical: isMobileLayout ? AppSizes.txlPadding : AppSizes.dxlPadding,
       ),
       decoration: const BoxDecoration(
         color: AppTheme.dark2,
@@ -23,8 +23,7 @@ class SubscriptionExpiryWidget extends StatelessWidget {
         child: Row(
           children: [
             SizedBox(
-              width:
-                  useMobileLayout ? AppSizes.dxlPadding : AppSizes.txlPadding,
+              width: isMobileLayout ? AppSizes.dxlPadding : AppSizes.txlPadding,
             ),
             Image.asset(
               'assets/images/warning-circle.png',
@@ -32,12 +31,15 @@ class SubscriptionExpiryWidget extends StatelessWidget {
               height: iconSize,
             ),
             SizedBox(
-              width: useMobileLayout ? AppSizes.xsPadding : AppSizes.smPadding,
+              width: isMobileLayout ? AppSizes.xsPadding : AppSizes.smPadding,
             ),
-            const Flexible(
+            Flexible(
               child: Text(
                 'This subscription expires in a month',
-                style: TextStyle(fontSize: AppSizes.mdText),
+                style: TextStyle(
+                  fontSize:
+                      isMobileLayout ? AppSizes.mdText - 1 : AppSizes.mdText,
+                ),
               ),
             ),
           ],

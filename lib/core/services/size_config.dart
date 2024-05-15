@@ -15,14 +15,19 @@ class SizeConfig {
     width = _mediaQueryData.size.width;
     height = _mediaQueryData.size.height;
 
-    if (width < 800) {
+    // to decide whether desktop layout should be used in mobile landscape
+    if (width < 750) {
       layoutType = LayoutType.mobile;
+    } else if (width >= 750 && width < 1024) {
+      layoutType = LayoutType.tablet;
     } else {
       layoutType = LayoutType.desktop;
     }
   }
 
-  static bool get useMobileLayout => layoutType == LayoutType.mobile;
+  static bool get isMobileLayout => layoutType == LayoutType.mobile;
+  static bool get isTabletLayout => layoutType == LayoutType.tablet;
+  static bool get isDesktopLayout => layoutType == LayoutType.desktop;
 }
 
-enum LayoutType { mobile, desktop }
+enum LayoutType { mobile, tablet, desktop }

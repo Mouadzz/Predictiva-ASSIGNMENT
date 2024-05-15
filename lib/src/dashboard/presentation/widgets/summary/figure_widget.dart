@@ -5,7 +5,7 @@ class FigureWidget extends StatelessWidget {
   const FigureWidget({
     required this.title,
     required this.value,
-    required this.useMobileLayout,
+    required this.isMobileLayout,
     super.key,
     this.figureState,
   });
@@ -13,15 +13,19 @@ class FigureWidget extends StatelessWidget {
   final String title;
   final String value;
   final Widget? figureState;
-  final bool useMobileLayout;
+  final bool isMobileLayout;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      flex: 4,
+      flex: 5,
       child: Padding(
         padding: EdgeInsets.symmetric(
-          vertical: useMobileLayout ? AppSizes.lgPadding : AppSizes.nmxlPadding,
+          vertical: isMobileLayout
+              ? AppSizes.lgPadding
+              : SizeConfig.isTabletLayout
+                  ? AppSizes.txlPadding
+                  : AppSizes.nmxlPadding,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,22 +39,25 @@ class FigureWidget extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: useMobileLayout ? AppSizes.xsPadding : AppSizes.lgPadding,
+              height: isMobileLayout ? AppSizes.xsPadding : AppSizes.lgPadding,
             ),
             Row(
               children: [
                 Text(
                   value,
                   style: TextStyle(
-                    fontSize:
-                        useMobileLayout ? AppSizes.lgText : AppSizes.xlText,
+                    fontSize: isMobileLayout
+                        ? AppSizes.lgText
+                        : SizeConfig.isTabletLayout
+                            ? AppSizes.nmdText
+                            : AppSizes.xlText,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
                 if (figureState != null)
                   Padding(
                     padding: EdgeInsets.only(
-                      left: useMobileLayout
+                      left: isMobileLayout
                           ? AppSizes.xsPadding
                           : AppSizes.smPadding,
                     ),

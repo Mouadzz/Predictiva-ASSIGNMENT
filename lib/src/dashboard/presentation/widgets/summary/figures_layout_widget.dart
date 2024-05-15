@@ -5,12 +5,12 @@ import 'package:predictiva/src/dashboard/presentation/widgets/summary/figure_wid
 
 class FiguresLayoutWidget extends StatelessWidget {
   const FiguresLayoutWidget({
-    required this.useMobileLayout,
+    required this.isMobileLayout,
     super.key,
     this.portfolio,
   });
 
-  final bool useMobileLayout;
+  final bool isMobileLayout;
   final PortfolioEntity? portfolio;
 
   @override
@@ -18,16 +18,16 @@ class FiguresLayoutWidget extends StatelessWidget {
     return IntrinsicHeight(
       child: Padding(
         padding: EdgeInsets.only(
-          left: useMobileLayout ? AppSizes.xlPadding : 0,
+          left: isMobileLayout ? AppSizes.xlPadding : 0,
         ),
         child: Flex(
-          direction: useMobileLayout ? Axis.vertical : Axis.horizontal,
+          direction: isMobileLayout ? Axis.vertical : Axis.horizontal,
           children: [
-            if (!useMobileLayout) const Expanded(child: SizedBox()),
+            if (!isMobileLayout) const Expanded(child: SizedBox()),
             FigureWidget(
               title: 'Balance',
               value: r'$' + portfolio!.balance.toStringAsFixed(2),
-              useMobileLayout: useMobileLayout,
+              isMobileLayout: isMobileLayout,
             ),
             getDivider(),
             FigureWidget(
@@ -36,15 +36,15 @@ class FiguresLayoutWidget extends StatelessWidget {
               figureState: FigureStateWidget(
                 percent: portfolio!.profitPercentage,
                 success: true,
-                useMobileLayout: useMobileLayout,
+                isMobileLayout: isMobileLayout,
               ),
-              useMobileLayout: useMobileLayout,
+              isMobileLayout: isMobileLayout,
             ),
             getDivider(),
             FigureWidget(
               title: 'Assets',
               value: portfolio!.assets.toString(),
-              useMobileLayout: useMobileLayout,
+              isMobileLayout: isMobileLayout,
             ),
           ],
         ),
@@ -53,7 +53,7 @@ class FiguresLayoutWidget extends StatelessWidget {
   }
 
   Widget getDivider() {
-    if (useMobileLayout) {
+    if (isMobileLayout) {
       return const Divider(endIndent: AppSizes.smPadding);
     } else {
       return const Expanded(
