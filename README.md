@@ -29,7 +29,7 @@ This structure helps in maintaining a clean, testable, and scalable codebase.
    git clone https://github.com/Mouadzz/Predictiva-ASSIGNMENT.git
    ```
    ```sh
-   cd predictiva-flutter-assignment
+   cd Predictiva-ASSIGNMENT
    ```
 2. **Install dependencies**:
    ```sh
