@@ -6,6 +6,16 @@ String formatDate(DateTime dateTime) {
   return '$day $month, $year';
 }
 
+bool isSameDateOrAfter(DateTime a, DateTime b) {
+  return (a.year == b.year && a.month == b.month && a.day == b.day) ||
+      a.isAfter(b);
+}
+
+bool isSameDateOrBefore(DateTime a, DateTime b) {
+  return (a.year == b.year && a.month == b.month && a.day == b.day) ||
+      a.isBefore(b);
+}
+
 List<String> months = [
   'Jan',
   'Feb',

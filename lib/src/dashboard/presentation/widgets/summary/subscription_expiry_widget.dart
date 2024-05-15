@@ -11,7 +11,6 @@ class SubscriptionExpiryWidget extends StatelessWidget {
     final iconSize = useMobileLayout ? AppSizes.mdIcon : AppSizes.lgIcon;
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: useMobileLayout ? AppSizes.dxlPadding : AppSizes.txlPadding,
         vertical: useMobileLayout ? AppSizes.txlPadding : AppSizes.dxlPadding,
       ),
       decoration: const BoxDecoration(
@@ -20,21 +19,29 @@ class SubscriptionExpiryWidget extends StatelessWidget {
         borderRadius:
             BorderRadius.vertical(bottom: Radius.circular(AppSizes.lgRadius)),
       ),
-      child: Row(
-        children: [
-          Image.asset(
-            'assets/images/warning-circle.png',
-            width: iconSize,
-            height: iconSize,
-          ),
-          SizedBox(
-            width: useMobileLayout ? AppSizes.xsPadding : AppSizes.smPadding,
-          ),
-          const Text(
-            'This subscription expires in a month',
-            style: TextStyle(fontSize: AppSizes.mdText),
-          ),
-        ],
+      child: Center(
+        child: Row(
+          children: [
+            SizedBox(
+              width:
+                  useMobileLayout ? AppSizes.dxlPadding : AppSizes.txlPadding,
+            ),
+            Image.asset(
+              'assets/images/warning-circle.png',
+              width: iconSize,
+              height: iconSize,
+            ),
+            SizedBox(
+              width: useMobileLayout ? AppSizes.xsPadding : AppSizes.smPadding,
+            ),
+            const Flexible(
+              child: Text(
+                'This subscription expires in a month',
+                style: TextStyle(fontSize: AppSizes.mdText),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:predictiva/core/core.dart';
 import 'package:predictiva/src/dashboard/dashboard.dart';
+import 'package:predictiva/src/dashboard/presentation/widgets/open_trades/talbe_rows_widget.dart';
 
-class OpenOrdersWidget extends StatefulWidget {
-  const OpenOrdersWidget({super.key});
+class OrdersTableWidget extends StatefulWidget {
+  const OrdersTableWidget({required this.useMobileLayout, super.key});
+
+  final bool useMobileLayout;
 
   @override
-  State<OpenOrdersWidget> createState() => _OpenOrdersWidgetState();
+  State<OrdersTableWidget> createState() => _OrdersTableWidgetState();
 }
 
-class _OpenOrdersWidgetState extends State<OpenOrdersWidget> {
+class _OrdersTableWidgetState extends State<OrdersTableWidget> {
   int ordersPerPage = 5;
   int currentPage = 1;
   List<OrderEntity> orders = [];
@@ -33,12 +36,8 @@ class _OpenOrdersWidgetState extends State<OpenOrdersWidget> {
     return BlocConsumer<DashboardBloc, DashboardState>(
       listener: (context, state) {
         if (state is OrdersError) {
-          showSnackBar(
-            context,
-            'Failed to load orders :\n\n${state.failure.message}',
-          );
+          showSnackBar(context, state.failure);
         }
-
         if (state is OrdersLoaded) {
           setState(() {
             orders = state.newOrders;
@@ -47,10 +46,12 @@ class _OpenOrdersWidgetState extends State<OpenOrdersWidget> {
         }
       },
       builder: (context, state) {
-        if (orders.isEmpty) return const SizedBox();
-
         return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(
+            horizontal: widget.useMobileLayout
+                ? AppSizes.xlPadding
+                : AppSizes.txlPadding,
+          ),
           decoration: BoxDecoration(
             color: AppTheme.dark4,
             borderRadius: BorderRadius.circular(AppSizes.lgRadius),
@@ -60,13 +61,16 @@ class _OpenOrdersWidgetState extends State<OpenOrdersWidget> {
             children: [
               Column(
                 children: [
-                  OpenOrdersHeaderWidget(
+                  TableHeaderWidget(
+                    useMobileLayout: widget.useMobileLayout,
                     onFilterTap: dropDownController.toggle,
                   ),
-                  currentPageWidget(
+                  TableRowsWidget(
                     orderList: orders.sublist(startIndex - 1, endIndex),
+                    useMobileLayout: widget.useMobileLayout,
                   ),
-                  OpenOrdersPaginationWidget(
+                  TablePaginationWidget(
+                    useMobileLayout: widget.useMobileLayout,
                     paginationText:
                         '$startIndex - $endIndex of ${orders.length}',
                     onBack: (currentPage > 1)
@@ -104,13 +108,6 @@ class _OpenOrdersWidgetState extends State<OpenOrdersWidget> {
     );
   }
 
-  Widget currentPageWidget({required List<OrderEntity> orderList}) => Column(
-        children: [
-          for (final order in orderList) OrderItemWidget(order: order),
-          const Divider(),
-        ],
-      );
-
   void filterOrders(FilterParams newFilterParams) {
     dropDownController.hide();
     setState(() {
@@ -128,15 +125,5 @@ class _OpenOrdersWidgetState extends State<OpenOrdersWidget> {
       }).toList();
       currentPage = 1;
     });
-  }
-
-  bool isSameDateOrAfter(DateTime a, DateTime b) {
-    return (a.year == b.year && a.month == b.month && a.day == b.day) ||
-        a.isAfter(b);
-  }
-
-  bool isSameDateOrBefore(DateTime a, DateTime b) {
-    return (a.year == b.year && a.month == b.month && a.day == b.day) ||
-        a.isBefore(b);
   }
 }

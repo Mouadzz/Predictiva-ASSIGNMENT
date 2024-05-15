@@ -27,12 +27,8 @@ class _SummaryWidgetState extends State<SummaryWidget> {
     return BlocConsumer<DashboardBloc, DashboardState>(
       listener: (context, state) {
         if (state is PortfolioError) {
-          showSnackBar(
-            context,
-            'Failed to load portfolio :\n${state.failure.message}',
-          );
+          showSnackBar(context, state.failure);
         }
-
         if (state is PortfolioLoaded) {
           portfolio = state.newPortfolio;
         }

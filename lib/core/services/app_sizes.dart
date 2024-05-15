@@ -14,6 +14,7 @@ class AppSizes {
   static const double xsText = 12;
   static const double smText = 14;
   static const double mdText = 16;
+  static const double nmdText = 18;
   static const double lgText = 20;
   static const double xlText = 24;
 
@@ -25,4 +26,6 @@ class AppSizes {
   static const double smRadius = 4;
   static const double mdRadius = 8;
   static const double lgRadius = 12;
+
+  static const double filterDropDownWidth = 500;
 }

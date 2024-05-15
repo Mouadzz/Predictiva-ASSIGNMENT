@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:predictiva/core/core.dart';
 import 'package:predictiva/src/dashboard/dashboard.dart';
@@ -19,19 +17,11 @@ class FilterDropDownWidget extends StatefulWidget {
 }
 
 class _FilterDropDownWidgetState extends State<FilterDropDownWidget> {
-  final textEditingController = TextEditingController();
   late FilterParams filterParams;
 
   @override
   void initState() {
     filterParams = widget.filterParams;
-    textEditingController
-      ..text = widget.filterParams.price != null
-          ? widget.filterParams.price.toString()
-          : ''
-      ..addListener(() {
-        filterParams.price = double.tryParse(textEditingController.text);
-      });
     super.initState();
   }
 
@@ -39,10 +29,16 @@ class _FilterDropDownWidgetState extends State<FilterDropDownWidget> {
   Widget build(BuildContext context) {
     return OrientationBuilder(
       builder: (context, orientation) {
-        final double width = min(SizeConfig.width - 80, 467);
+        final useMobileLayout = SizeConfig.useMobileLayout;
         return Container(
-          margin: const EdgeInsets.only(top: 55),
-          padding: EdgeInsets.all(width * 0.04),
+          margin: EdgeInsets.only(
+            top: useMobileLayout
+                ? AppSizes.txlPadding * 2
+                : AppSizes.nmxlPadding * 2,
+          ),
+          padding: EdgeInsets.all(
+            useMobileLayout ? AppSizes.smPadding : AppSizes.dxlPadding,
+          ),
           decoration: BoxDecoration(
             color: AppTheme.dark6,
             borderRadius: BorderRadius.circular(AppSizes.mdRadius),
@@ -54,44 +50,63 @@ class _FilterDropDownWidgetState extends State<FilterDropDownWidget> {
               ),
             ],
           ),
-          width: width,
+          width: AppSizes.filterDropDownWidth,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Row(
                 children: [
                   SymbolButton(
+                    useMobileLayout: useMobileLayout,
                     initialValue: widget.filterParams.symbol,
                     onSymbolChange: (symbol) {
                       filterParams.symbol = symbol;
                     },
                   ),
-                  SizedBox(width: width * 0.03),
-                  PriceInputField(textEditingController: textEditingController),
+                  SizedBox(
+                    width: useMobileLayout
+                        ? AppSizes.dxsPadding
+                        : AppSizes.smPadding,
+                  ),
+                  PriceInputField(
+                    initialValue: widget.filterParams.price,
+                    useMobileLayout: useMobileLayout,
+                    onPriceChange: (price) {
+                      filterParams.price = price;
+                    },
+                  ),
                 ],
               ),
-              const SizedBox(height: 16),
-              Align(
+              const SizedBox(height: AppSizes.lgPadding),
+              const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Date Range',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: AppSizes.smText,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: AppSizes.xsPadding),
               Row(
                 children: [
-                  StartDateButton(
+                  DateButton(
+                    hint: 'Start Date',
+                    useMobileLayout: useMobileLayout,
                     initialDate: widget.filterParams.startDate,
                     onDateChange: (startDate) {
                       filterParams.startDate = startDate;
                     },
                   ),
-                  SizedBox(width: width * 0.03),
-                  EndDateButton(
+                  SizedBox(
+                    width: useMobileLayout
+                        ? AppSizes.dxsPadding
+                        : AppSizes.smPadding,
+                  ),
+                  DateButton(
+                    hint: 'End Date',
+                    useMobileLayout: useMobileLayout,
                     initialDate: widget.filterParams.endDate,
                     onDateChange: (endDate) {
                       filterParams.endDate = endDate;
@@ -99,7 +114,7 @@ class _FilterDropDownWidgetState extends State<FilterDropDownWidget> {
                   ),
                 ],
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: AppSizes.txlPadding),
               submitButton(onSubmit: () => widget.onFilter(filterParams)),
             ],
           ),
@@ -116,26 +131,19 @@ class _FilterDropDownWidgetState extends State<FilterDropDownWidget> {
         child: Align(
           alignment: Alignment.centerRight,
           child: Container(
-            padding: const EdgeInsets.all(12),
+            padding: const EdgeInsets.all(AppSizes.smPadding),
             decoration: BoxDecoration(
               color: AppTheme.greenAccent,
               borderRadius: BorderRadius.circular(AppSizes.mdRadius),
             ),
-            child: Text(
+            child: const Text(
               'Filter table',
               style: TextStyle(
-                fontSize: 14,
+                fontSize: AppSizes.smText,
                 fontWeight: FontWeight.w600,
-                color: Colors.white,
               ),
             ),
           ),
         ),
       );
-
-  @override
-  void dispose() {
-    textEditingController.dispose();
-    super.dispose();
-  }
 }

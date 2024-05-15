@@ -18,25 +18,23 @@ class _DashboardPageState extends State<DashboardPage> {
         return Scaffold(
           appBar: TopNavigationWidget(useMobileLayout: useMobileLayout),
           body: SafeArea(
-            child: Center(
-              child: Container(
-                alignment: Alignment.center,
-                constraints: BoxConstraints(maxWidth: SizeConfig.maxWidth),
-                child: SingleChildScrollView(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: useMobileLayout
-                        ? AppSizes.xlPadding
-                        : AppSizes.mxlPadding,
-                  ),
-                  child: Column(
-                    children: [
-                      DashboardHeaderWidget(useMobileLayout: useMobileLayout),
-                      SummaryWidget(useMobileLayout: useMobileLayout),
-                      const SizedBox(height: 24),
-                      OpenOrdersWidget(),
-                      SizedBox(height: 100),
-                    ],
-                  ),
+            child: Container(
+              alignment: Alignment.topCenter,
+              constraints: BoxConstraints(maxWidth: SizeConfig.maxWidth),
+              child: SingleChildScrollView(
+                padding: EdgeInsets.symmetric(
+                  horizontal: useMobileLayout
+                      ? AppSizes.xlPadding
+                      : AppSizes.mxlPadding,
+                ),
+                child: Column(
+                  children: [
+                    DashboardHeaderWidget(useMobileLayout: useMobileLayout),
+                    SummaryWidget(useMobileLayout: useMobileLayout),
+                    const SizedBox(height: AppSizes.dxlPadding),
+                    OrdersTableWidget(useMobileLayout: useMobileLayout),
+                    const SizedBox(height: AppSizes.mxlPadding),
+                  ],
                 ),
               ),
             ),

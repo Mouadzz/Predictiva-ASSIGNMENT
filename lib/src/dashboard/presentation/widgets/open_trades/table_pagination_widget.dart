@@ -1,29 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:predictiva/core/core.dart';
 
-class OpenOrdersPaginationWidget extends StatelessWidget {
-  const OpenOrdersPaginationWidget({
+class TablePaginationWidget extends StatelessWidget {
+  const TablePaginationWidget({
     required this.onForward,
     required this.onBack,
     required this.paginationText,
+    required this.useMobileLayout,
     super.key,
   });
 
   final void Function()? onForward;
   final void Function()? onBack;
-
+  final bool useMobileLayout;
   final String paginationText;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 24),
+      padding: EdgeInsets.only(
+        top: AppSizes.dxlPadding,
+        bottom: useMobileLayout ? AppSizes.dxlPadding : AppSizes.txlPadding,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             paginationText,
-            style: const TextStyle(fontSize: 14, color: AppTheme.grey1),
+            style: TextStyle(
+              fontSize: useMobileLayout ? AppSizes.smText : AppSizes.mdText,
+              color: AppTheme.grey1,
+            ),
           ),
           Row(
             children: [
@@ -53,8 +60,8 @@ class OpenOrdersPaginationWidget extends StatelessWidget {
       GestureDetector(
         onTap: onTap,
         child: Container(
-          width: 24,
-          height: 24,
+          width: AppSizes.lgIcon,
+          height: AppSizes.lgIcon,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppSizes.smRadius),
             border: Border.all(color: AppTheme.stroke),
@@ -62,8 +69,8 @@ class OpenOrdersPaginationWidget extends StatelessWidget {
           child: Center(
             child: Image.asset(
               assetPath,
-              width: 20,
-              height: 20,
+              width: AppSizes.lgText,
+              height: AppSizes.lgText,
               color: disabled ? AppTheme.grey2 : Colors.white,
             ),
           ),

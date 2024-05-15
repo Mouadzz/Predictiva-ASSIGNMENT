@@ -5,12 +5,14 @@ import 'package:predictiva/src/dashboard/dashboard.dart';
 class SymbolButton extends StatefulWidget {
   const SymbolButton({
     required this.onSymbolChange,
+    required this.useMobileLayout,
     super.key,
     this.initialValue,
   });
 
   final void Function(TradingSymbol?) onSymbolChange;
   final TradingSymbol? initialValue;
+  final bool useMobileLayout;
 
   @override
   State<SymbolButton> createState() => _SymbolButtonState();
@@ -27,6 +29,7 @@ class _SymbolButtonState extends State<SymbolButton> {
 
   @override
   Widget build(BuildContext context) {
+    final iconSize = widget.useMobileLayout ? AppSizes.smIcon : AppSizes.mdIcon;
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
@@ -35,20 +38,24 @@ class _SymbolButtonState extends State<SymbolButton> {
         ),
         child: DropdownButtonHideUnderline(
           child: DropdownButton(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-            isDense: true,
+            padding: EdgeInsets.symmetric(
+              horizontal: widget.useMobileLayout
+                  ? AppSizes.smPadding
+                  : AppSizes.lgPadding,
+            ),
             dropdownColor: AppTheme.dark6,
             value: selectedSymbol?.name,
             icon: Image.asset(
               'assets/images/nav-arrow-down.png',
-              width: 20,
-              height: 20,
+              width: iconSize,
+              height: iconSize,
             ),
             borderRadius: BorderRadius.circular(AppSizes.mdRadius),
             hint: Text(
               'Symbol',
               style: TextStyle(
-                fontSize: 14,
+                fontSize:
+                    widget.useMobileLayout ? AppSizes.xsText : AppSizes.smText,
                 color: AppTheme.grey2,
               ),
             ),
@@ -58,7 +65,9 @@ class _SymbolButtonState extends State<SymbolButton> {
                 child: Text(
                   symbol.name,
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: widget.useMobileLayout
+                        ? AppSizes.xsText
+                        : AppSizes.smText,
                     color: AppTheme.grey2,
                   ),
                 ),
@@ -72,7 +81,6 @@ class _SymbolButtonState extends State<SymbolButton> {
                   selectedSymbol =
                       value != null ? OrderModel.parseSymbol(value) : null;
                 }
-
                 widget.onSymbolChange(selectedSymbol);
               });
             },
