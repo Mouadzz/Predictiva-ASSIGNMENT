@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:predictiva/core/core.dart';
 import 'package:predictiva/src/dashboard/dashboard.dart';
-import 'package:predictiva/src/dashboard/presentation/widgets/summary/figure_widget.dart';
 
 class FiguresLayoutWidget extends StatelessWidget {
   const FiguresLayoutWidget({

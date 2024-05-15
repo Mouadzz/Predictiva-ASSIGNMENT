@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:predictiva/core/core.dart';
 import 'package:predictiva/src/dashboard/dashboard.dart';
-import 'package:predictiva/src/dashboard/presentation/widgets/summary/figures_layout_widget.dart';
-import 'package:predictiva/src/dashboard/presentation/widgets/summary/subscription_expiry_widget.dart';
 
 class SummaryWidget extends StatefulWidget {
   const SummaryWidget({required this.isMobileLayout, super.key});
