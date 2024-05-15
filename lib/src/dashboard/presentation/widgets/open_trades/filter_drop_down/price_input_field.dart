@@ -4,12 +4,12 @@ import 'package:predictiva/core/core.dart';
 class PriceInputField extends StatefulWidget {
   const PriceInputField({
     required this.initialValue,
-    required this.isMobileLayout,
+    required this.isMobile,
     required this.onPriceChange,
     super.key,
   });
 
-  final bool isMobileLayout;
+  final bool isMobile;
   final double? initialValue;
   final void Function(double?) onPriceChange;
 
@@ -45,7 +45,7 @@ class _PriceInputFieldState extends State<PriceInputField> {
         child: TextField(
           controller: textEditingController,
           style: TextStyle(
-            fontSize: widget.isMobileLayout ? AppSizes.xsText : AppSizes.smText,
+            fontSize: widget.isMobile ? AppSizes.xsText : AppSizes.smText,
             color: AppTheme.grey2,
           ),
           onTapOutside: (_) {
@@ -55,17 +55,15 @@ class _PriceInputFieldState extends State<PriceInputField> {
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(
-              horizontal: widget.isMobileLayout
-                  ? AppSizes.smPadding
-                  : AppSizes.lgPadding,
+              horizontal:
+                  widget.isMobile ? AppSizes.smPadding : AppSizes.lgPadding,
             ),
             counterText: '',
             hintText: 'Price',
             hintTextDirection: TextDirection.ltr,
             border: InputBorder.none,
             hintStyle: TextStyle(
-              fontSize:
-                  widget.isMobileLayout ? AppSizes.xsText : AppSizes.smText,
+              fontSize: widget.isMobile ? AppSizes.xsText : AppSizes.smText,
               color: AppTheme.grey2,
             ),
           ),

@@ -28,4 +28,6 @@ class AppSizes {
   static const double lgRadius = 12;
 
   static const double filterDropDownWidth = 500;
+
+  static const double maxWidth = 1536;
 }

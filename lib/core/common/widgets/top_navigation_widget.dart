@@ -4,17 +4,17 @@ import 'package:predictiva/core/core.dart';
 class TopNavigationWidget extends StatelessWidget
     implements PreferredSizeWidget {
   const TopNavigationWidget({
-    required this.isMobileLayout,
+    required this.isMobile,
     super.key,
   });
 
-  final bool isMobileLayout;
+  final bool isMobile;
 
   @override
   Size get preferredSize => Size.fromHeight(
-        isMobileLayout
+        isMobile
             ? 79
-            : SizeConfig.isTabletLayout
+            : SizeConfig.isTablet
                 ? 89
                 : 99,
       );

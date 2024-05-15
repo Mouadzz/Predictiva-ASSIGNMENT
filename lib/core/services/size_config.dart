@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 class SizeConfig {
-  static double maxWidth = 1536;
-
   static late double width;
   static late double height;
   static late double shortestSide;
@@ -25,9 +23,9 @@ class SizeConfig {
     }
   }
 
-  static bool get isMobileLayout => layoutType == LayoutType.mobile;
-  static bool get isTabletLayout => layoutType == LayoutType.tablet;
-  static bool get isDesktopLayout => layoutType == LayoutType.desktop;
+  static bool get isMobile => layoutType == LayoutType.mobile;
+  static bool get isTablet => layoutType == LayoutType.tablet;
+  static bool get isDesktop => layoutType == LayoutType.desktop;
 }
 
 enum LayoutType { mobile, tablet, desktop }

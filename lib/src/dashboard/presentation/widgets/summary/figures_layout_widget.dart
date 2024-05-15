@@ -4,55 +4,58 @@ import 'package:predictiva/src/dashboard/dashboard.dart';
 
 class FiguresLayoutWidget extends StatelessWidget {
   const FiguresLayoutWidget({
-    required this.isMobileLayout,
     super.key,
     this.portfolio,
   });
 
-  final bool isMobileLayout;
   final PortfolioEntity? portfolio;
 
   @override
   Widget build(BuildContext context) {
-    return IntrinsicHeight(
-      child: Padding(
-        padding: EdgeInsets.only(
-          left: isMobileLayout ? AppSizes.xlPadding : 0,
-        ),
-        child: Flex(
-          direction: isMobileLayout ? Axis.vertical : Axis.horizontal,
-          children: [
-            if (!isMobileLayout) const Expanded(child: SizedBox()),
-            FigureWidget(
-              title: 'Balance',
-              value: r'$' + portfolio!.balance.toStringAsFixed(2),
-              isMobileLayout: isMobileLayout,
+    return OrientationBuilder(
+      builder: (_, __) {
+        final isMobile = SizeConfig.isMobile;
+        return IntrinsicHeight(
+          child: Padding(
+            padding: EdgeInsets.only(
+              left: isMobile ? AppSizes.xlPadding : 0,
             ),
-            getDivider(),
-            FigureWidget(
-              title: 'Profits',
-              value: r'$' + portfolio!.profit.toStringAsFixed(2),
-              figureState: FigureStateWidget(
-                percent: portfolio!.profitPercentage,
-                success: true,
-                isMobileLayout: isMobileLayout,
-              ),
-              isMobileLayout: isMobileLayout,
+            child: Flex(
+              direction: isMobile ? Axis.vertical : Axis.horizontal,
+              children: [
+                if (!isMobile) const Expanded(child: SizedBox()),
+                FigureWidget(
+                  title: 'Balance',
+                  value: r'$' + portfolio!.balance.toStringAsFixed(2),
+                  isMobile: isMobile,
+                ),
+                getDivider(isMobile: isMobile),
+                FigureWidget(
+                  title: 'Profits',
+                  value: r'$' + portfolio!.profit.toStringAsFixed(2),
+                  figureState: FigureStateWidget(
+                    percent: portfolio!.profitPercentage,
+                    success: true, // todo
+                    isMobile: isMobile,
+                  ),
+                  isMobile: isMobile,
+                ),
+                getDivider(isMobile: isMobile),
+                FigureWidget(
+                  title: 'Assets',
+                  value: portfolio!.assets.toString(),
+                  isMobile: isMobile,
+                ),
+              ],
             ),
-            getDivider(),
-            FigureWidget(
-              title: 'Assets',
-              value: portfolio!.assets.toString(),
-              isMobileLayout: isMobileLayout,
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 
-  Widget getDivider() {
-    if (isMobileLayout) {
+  Widget getDivider({required bool isMobile}) {
+    if (isMobile) {
       return const Divider(endIndent: AppSizes.smPadding);
     } else {
       return const Expanded(

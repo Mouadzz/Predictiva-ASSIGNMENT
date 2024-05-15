@@ -14,27 +14,26 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     return OrientationBuilder(
       builder: (context, orientation) {
-        final isMobileLayout = SizeConfig.isMobileLayout;
+        final isMobile = SizeConfig.isMobile;
         return Scaffold(
-          appBar: TopNavigationWidget(isMobileLayout: isMobileLayout),
+          appBar: TopNavigationWidget(isMobile: isMobile),
           body: SafeArea(
             child: Align(
               alignment: Alignment.topCenter,
               child: Container(
-                constraints: BoxConstraints(maxWidth: SizeConfig.maxWidth),
+                constraints: const BoxConstraints(maxWidth: AppSizes.maxWidth),
                 child: SingleChildScrollView(
                   padding: EdgeInsets.symmetric(
-                    horizontal: isMobileLayout
-                        ? AppSizes.xlPadding
-                        : AppSizes.mxlPadding,
+                    horizontal:
+                        isMobile ? AppSizes.xlPadding : AppSizes.mxlPadding,
                   ),
-                  child: Column(
+                  child: const Column(
                     children: [
-                      DashboardHeaderWidget(isMobileLayout: isMobileLayout),
-                      SummaryWidget(isMobileLayout: isMobileLayout),
-                      const SizedBox(height: AppSizes.dxlPadding),
-                      OrdersTableWidget(isMobileLayout: isMobileLayout),
-                      const SizedBox(height: AppSizes.mxlPadding),
+                      DashboardHeaderWidget(),
+                      SummaryWidget(),
+                      SizedBox(height: AppSizes.dxlPadding),
+                      OrdersTableWidget(),
+                      SizedBox(height: AppSizes.mxlPadding),
                     ],
                   ),
                 ),

@@ -29,15 +29,13 @@ class _FilterDropDownWidgetState extends State<FilterDropDownWidget> {
   Widget build(BuildContext context) {
     return OrientationBuilder(
       builder: (context, orientation) {
-        final isMobileLayout = SizeConfig.isMobileLayout;
+        final isMobile = SizeConfig.isMobile;
         return Container(
           margin: EdgeInsets.only(
-            top: isMobileLayout
-                ? AppSizes.txlPadding * 2
-                : AppSizes.nmxlPadding * 2,
+            top: isMobile ? AppSizes.txlPadding * 2 : AppSizes.nmxlPadding * 2,
           ),
           padding: EdgeInsets.all(
-            isMobileLayout ? AppSizes.smPadding : AppSizes.dxlPadding,
+            isMobile ? AppSizes.smPadding : AppSizes.dxlPadding,
           ),
           decoration: BoxDecoration(
             color: AppTheme.dark6,
@@ -57,20 +55,18 @@ class _FilterDropDownWidgetState extends State<FilterDropDownWidget> {
               Row(
                 children: [
                   SymbolButton(
-                    isMobileLayout: isMobileLayout,
+                    isMobile: isMobile,
                     initialValue: widget.filterParams.symbol,
                     onSymbolChange: (symbol) {
                       filterParams.symbol = symbol;
                     },
                   ),
                   SizedBox(
-                    width: isMobileLayout
-                        ? AppSizes.dxsPadding
-                        : AppSizes.smPadding,
+                    width: isMobile ? AppSizes.dxsPadding : AppSizes.smPadding,
                   ),
                   PriceInputField(
                     initialValue: widget.filterParams.price,
-                    isMobileLayout: isMobileLayout,
+                    isMobile: isMobile,
                     onPriceChange: (price) {
                       filterParams.price = price;
                     },
@@ -93,20 +89,18 @@ class _FilterDropDownWidgetState extends State<FilterDropDownWidget> {
                 children: [
                   DateButton(
                     hint: 'Start Date',
-                    isMobileLayout: isMobileLayout,
+                    isMobile: isMobile,
                     initialDate: widget.filterParams.startDate,
                     onDateChange: (startDate) {
                       filterParams.startDate = startDate;
                     },
                   ),
                   SizedBox(
-                    width: isMobileLayout
-                        ? AppSizes.dxsPadding
-                        : AppSizes.smPadding,
+                    width: isMobile ? AppSizes.dxsPadding : AppSizes.smPadding,
                   ),
                   DateButton(
                     hint: 'End Date',
-                    isMobileLayout: isMobileLayout,
+                    isMobile: isMobile,
                     initialDate: widget.filterParams.endDate,
                     onDateChange: (endDate) {
                       filterParams.endDate = endDate;

@@ -4,7 +4,7 @@ import 'package:predictiva/core/core.dart';
 class DateButton extends StatefulWidget {
   const DateButton({
     required this.onDateChange,
-    required this.isMobileLayout,
+    required this.isMobile,
     required this.hint,
     super.key,
     this.initialDate,
@@ -12,7 +12,7 @@ class DateButton extends StatefulWidget {
 
   final void Function(DateTime?) onDateChange;
   final DateTime? initialDate;
-  final bool isMobileLayout;
+  final bool isMobile;
   final String hint;
 
   @override
@@ -32,7 +32,7 @@ class _DateButtonState extends State<DateButton> {
 
   @override
   Widget build(BuildContext context) {
-    final iconSize = widget.isMobileLayout ? AppSizes.smIcon : AppSizes.mdIcon;
+    final iconSize = widget.isMobile ? AppSizes.smIcon : AppSizes.mdIcon;
     return Expanded(
       child: GestureDetector(
         onTap: () async {
@@ -56,7 +56,7 @@ class _DateButtonState extends State<DateButton> {
           ),
           padding: EdgeInsets.symmetric(
             horizontal:
-                widget.isMobileLayout ? AppSizes.smPadding : AppSizes.lgPadding,
+                widget.isMobile ? AppSizes.smPadding : AppSizes.lgPadding,
           ),
           child: Row(
             children: [
@@ -64,9 +64,8 @@ class _DateButtonState extends State<DateButton> {
                 child: TextField(
                   controller: textEditingController,
                   style: TextStyle(
-                    fontSize: widget.isMobileLayout
-                        ? AppSizes.xsText
-                        : AppSizes.smText,
+                    fontSize:
+                        widget.isMobile ? AppSizes.xsText : AppSizes.smText,
                     color: AppTheme.grey2,
                   ),
                   enabled: false,
@@ -77,9 +76,8 @@ class _DateButtonState extends State<DateButton> {
                     hintTextDirection: TextDirection.ltr,
                     border: InputBorder.none,
                     hintStyle: TextStyle(
-                      fontSize: widget.isMobileLayout
-                          ? AppSizes.xsText
-                          : AppSizes.smText,
+                      fontSize:
+                          widget.isMobile ? AppSizes.xsText : AppSizes.smText,
                       color: AppTheme.grey2,
                     ),
                   ),

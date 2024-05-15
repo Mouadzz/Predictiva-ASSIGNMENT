@@ -5,14 +5,14 @@ import 'package:predictiva/src/dashboard/dashboard.dart';
 class SymbolButton extends StatefulWidget {
   const SymbolButton({
     required this.onSymbolChange,
-    required this.isMobileLayout,
+    required this.isMobile,
     super.key,
     this.initialValue,
   });
 
   final void Function(TradingSymbol?) onSymbolChange;
   final TradingSymbol? initialValue;
-  final bool isMobileLayout;
+  final bool isMobile;
 
   @override
   State<SymbolButton> createState() => _SymbolButtonState();
@@ -29,7 +29,7 @@ class _SymbolButtonState extends State<SymbolButton> {
 
   @override
   Widget build(BuildContext context) {
-    final iconSize = widget.isMobileLayout ? AppSizes.smIcon : AppSizes.mdIcon;
+    final iconSize = widget.isMobile ? AppSizes.smIcon : AppSizes.mdIcon;
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
@@ -39,9 +39,8 @@ class _SymbolButtonState extends State<SymbolButton> {
         child: DropdownButtonHideUnderline(
           child: DropdownButton(
             padding: EdgeInsets.symmetric(
-              horizontal: widget.isMobileLayout
-                  ? AppSizes.smPadding
-                  : AppSizes.lgPadding,
+              horizontal:
+                  widget.isMobile ? AppSizes.smPadding : AppSizes.lgPadding,
             ),
             dropdownColor: AppTheme.dark6,
             value: selectedSymbol?.name,
@@ -54,8 +53,7 @@ class _SymbolButtonState extends State<SymbolButton> {
             hint: Text(
               'Symbol',
               style: TextStyle(
-                fontSize:
-                    widget.isMobileLayout ? AppSizes.xsText : AppSizes.smText,
+                fontSize: widget.isMobile ? AppSizes.xsText : AppSizes.smText,
                 color: AppTheme.grey2,
               ),
             ),
@@ -65,9 +63,8 @@ class _SymbolButtonState extends State<SymbolButton> {
                 child: Text(
                   symbol.name,
                   style: TextStyle(
-                    fontSize: widget.isMobileLayout
-                        ? AppSizes.xsText
-                        : AppSizes.smText,
+                    fontSize:
+                        widget.isMobile ? AppSizes.xsText : AppSizes.smText,
                     color: AppTheme.grey2,
                   ),
                 ),

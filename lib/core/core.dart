@@ -1,6 +1,6 @@
 export 'package:flutter_bloc/flutter_bloc.dart';
 
-export 'common/pages/under_construction_page.dart';
+export 'common/pages/not_found_page.dart';
 export 'common/widgets/show_snack_bar.dart';
 export 'common/widgets/sizer.dart';
 export 'common/widgets/top_navigation_widget.dart';

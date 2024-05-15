@@ -4,39 +4,38 @@ import 'package:predictiva/src/dashboard/dashboard.dart';
 
 class TableRowsWidget extends StatelessWidget {
   const TableRowsWidget({
-    required this.isMobileLayout,
+    required this.isMobile,
     required this.orderList,
     super.key,
   });
 
-  final bool isMobileLayout;
+  final bool isMobile;
   final List<OrderEntity> orderList;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        if (isMobileLayout) const Divider() else desktopTableHeader(),
+        if (isMobile) const Divider() else desktopTableHeader(),
         for (final order in orderList)
           OrderWidget(
             order: order,
-            isMobileLayout: isMobileLayout,
+            isMobile: isMobile,
           ),
-        if (isMobileLayout) const Divider(),
+        if (isMobile) const Divider(),
       ],
     );
   }
 
   Widget desktopTableHeader() => Padding(
         padding: EdgeInsets.symmetric(
-          vertical: SizeConfig.isTabletLayout
-              ? AppSizes.xlPadding
-              : AppSizes.dxlPadding,
+          vertical:
+              SizeConfig.isTablet ? AppSizes.xlPadding : AppSizes.dxlPadding,
         ),
         child: Row(
           children: [
             expandWrapper(
-              flex: SizeConfig.isTabletLayout ? 1 : 2,
+              flex: SizeConfig.isTablet ? 1 : 2,
               child: const SizedBox(),
             ),
             expandWrapper(child: textWidget('Symbol')),
@@ -60,8 +59,7 @@ class TableRowsWidget extends StatelessWidget {
   Widget textWidget(String value) => Text(
         value,
         style: TextStyle(
-          fontSize:
-              SizeConfig.isTabletLayout ? AppSizes.smText : AppSizes.mdText,
+          fontSize: SizeConfig.isTablet ? AppSizes.smText : AppSizes.mdText,
           fontWeight: FontWeight.w600,
         ),
       );

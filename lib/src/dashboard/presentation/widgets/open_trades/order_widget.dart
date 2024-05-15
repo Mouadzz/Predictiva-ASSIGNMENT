@@ -5,23 +5,22 @@ import 'package:predictiva/src/dashboard/dashboard.dart';
 class OrderWidget extends StatelessWidget {
   const OrderWidget({
     required this.order,
-    required this.isMobileLayout,
+    required this.isMobile,
     super.key,
   });
 
   final OrderEntity order;
-  final bool isMobileLayout;
+  final bool isMobile;
 
   @override
   Widget build(BuildContext context) {
-    return isMobileLayout ? mobileLayout() : desktopLayout();
+    return isMobile ? mobileLayout() : desktopLayout();
   }
 
   Widget desktopLayout() => Container(
         padding: EdgeInsets.symmetric(
-          vertical: SizeConfig.isTabletLayout
-              ? AppSizes.xlPadding
-              : AppSizes.dxlPadding,
+          vertical:
+              SizeConfig.isTablet ? AppSizes.xlPadding : AppSizes.dxlPadding,
         ),
         margin: const EdgeInsets.only(bottom: AppSizes.dxsPadding),
         decoration: BoxDecoration(
@@ -32,7 +31,7 @@ class OrderWidget extends StatelessWidget {
           child: Row(
             children: [
               expandWrapper(
-                flex: SizeConfig.isTabletLayout ? 1 : 2,
+                flex: SizeConfig.isTablet ? 1 : 2,
                 child: const SizedBox(),
               ),
               expandWrapper(child: symbolWidget()),
@@ -86,15 +85,14 @@ class OrderWidget extends StatelessWidget {
   Widget textWidget(String value) => Text(
         value,
         style: TextStyle(
-          fontSize:
-              SizeConfig.isTabletLayout ? AppSizes.smText : AppSizes.mdText,
+          fontSize: SizeConfig.isTablet ? AppSizes.smText : AppSizes.mdText,
         ),
       );
 
   Widget sellButtonWidget() => Container(
         padding: EdgeInsets.symmetric(
-          horizontal: isMobileLayout ? AppSizes.xsPadding : AppSizes.smPadding,
-          vertical: isMobileLayout ? AppSizes.dxsPadding : AppSizes.xsPadding,
+          horizontal: isMobile ? AppSizes.xsPadding : AppSizes.smPadding,
+          vertical: isMobile ? AppSizes.dxsPadding : AppSizes.xsPadding,
         ),
         decoration: BoxDecoration(
           color: AppTheme.dark5,
@@ -113,8 +111,7 @@ class OrderWidget extends StatelessWidget {
   Widget dateWidget() => Text(
         formatDate(order.creationTime),
         style: TextStyle(
-          fontSize:
-              SizeConfig.isTabletLayout ? AppSizes.smText : AppSizes.mdText,
+          fontSize: SizeConfig.isTablet ? AppSizes.smText : AppSizes.mdText,
           color: AppTheme.grey2,
         ),
       );
@@ -122,8 +119,7 @@ class OrderWidget extends StatelessWidget {
   Widget symbolWidget() => Text(
         order.symbol.name,
         style: TextStyle(
-          fontSize:
-              SizeConfig.isTabletLayout ? AppSizes.smText : AppSizes.mdText,
+          fontSize: SizeConfig.isTablet ? AppSizes.smText : AppSizes.mdText,
           fontWeight: FontWeight.w600,
         ),
       );

@@ -5,7 +5,7 @@ class FigureWidget extends StatelessWidget {
   const FigureWidget({
     required this.title,
     required this.value,
-    required this.isMobileLayout,
+    required this.isMobile,
     super.key,
     this.figureState,
   });
@@ -13,7 +13,7 @@ class FigureWidget extends StatelessWidget {
   final String title;
   final String value;
   final Widget? figureState;
-  final bool isMobileLayout;
+  final bool isMobile;
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +21,9 @@ class FigureWidget extends StatelessWidget {
       flex: 5,
       child: Padding(
         padding: EdgeInsets.symmetric(
-          vertical: isMobileLayout
+          vertical: isMobile
               ? AppSizes.lgPadding
-              : SizeConfig.isTabletLayout
+              : SizeConfig.isTablet
                   ? AppSizes.txlPadding
                   : AppSizes.nmxlPadding,
         ),
@@ -39,16 +39,16 @@ class FigureWidget extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: isMobileLayout ? AppSizes.xsPadding : AppSizes.lgPadding,
+              height: isMobile ? AppSizes.xsPadding : AppSizes.lgPadding,
             ),
             Row(
               children: [
                 Text(
                   value,
                   style: TextStyle(
-                    fontSize: isMobileLayout
+                    fontSize: isMobile
                         ? AppSizes.lgText
-                        : SizeConfig.isTabletLayout
+                        : SizeConfig.isTablet
                             ? AppSizes.nmdText
                             : AppSizes.xlText,
                     fontWeight: FontWeight.w600,
@@ -57,9 +57,7 @@ class FigureWidget extends StatelessWidget {
                 if (figureState != null)
                   Padding(
                     padding: EdgeInsets.only(
-                      left: isMobileLayout
-                          ? AppSizes.xsPadding
-                          : AppSizes.smPadding,
+                      left: isMobile ? AppSizes.xsPadding : AppSizes.smPadding,
                     ),
                     child: figureState,
                   ),

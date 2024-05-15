@@ -3,9 +3,7 @@ import 'package:predictiva/core/core.dart';
 import 'package:predictiva/src/dashboard/dashboard.dart';
 
 class SummaryWidget extends StatefulWidget {
-  const SummaryWidget({required this.isMobileLayout, super.key});
-
-  final bool isMobileLayout;
+  const SummaryWidget({super.key});
 
   @override
   State<SummaryWidget> createState() => _SummaryWidgetState();
@@ -41,13 +39,8 @@ class _SummaryWidgetState extends State<SummaryWidget> {
           child: portfolio != null
               ? Column(
                   children: [
-                    FiguresLayoutWidget(
-                      portfolio: portfolio,
-                      isMobileLayout: widget.isMobileLayout,
-                    ),
-                    SubscriptionExpiryWidget(
-                      isMobileLayout: widget.isMobileLayout,
-                    ),
+                    FiguresLayoutWidget(portfolio: portfolio),
+                    const SubscriptionExpiryWidget(),
                   ],
                 )
               : const SizedBox(),

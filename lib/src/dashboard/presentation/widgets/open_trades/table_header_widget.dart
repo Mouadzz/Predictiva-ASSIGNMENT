@@ -4,20 +4,19 @@ import 'package:predictiva/core/core.dart';
 class TableHeaderWidget extends StatelessWidget {
   const TableHeaderWidget({
     required this.onFilterTap,
-    required this.isMobileLayout,
+    required this.isMobile,
     super.key,
   });
 
   final void Function() onFilterTap;
-  final bool isMobileLayout;
+  final bool isMobile;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        vertical: SizeConfig.isTabletLayout
-            ? AppSizes.xlPadding
-            : AppSizes.dxlPadding,
+        vertical:
+            SizeConfig.isTablet ? AppSizes.xlPadding : AppSizes.dxlPadding,
       ),
       child: Column(
         children: [
@@ -27,7 +26,7 @@ class TableHeaderWidget extends StatelessWidget {
               Text(
                 'Open trades',
                 style: TextStyle(
-                  fontSize: isMobileLayout || SizeConfig.isTabletLayout
+                  fontSize: isMobile || SizeConfig.isTablet
                       ? AppSizes.nmdText
                       : AppSizes.lgText,
                   fontWeight: FontWeight.w600,
@@ -46,9 +45,9 @@ class TableHeaderWidget extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.all(
-          isMobileLayout
+          isMobile
               ? AppSizes.dxsPadding
-              : SizeConfig.isTabletLayout
+              : SizeConfig.isTablet
                   ? AppSizes.xsPadding
                   : AppSizes.smPadding,
         ),
@@ -59,13 +58,13 @@ class TableHeaderWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (!isMobileLayout)
+            if (!isMobile)
               Padding(
                 padding: const EdgeInsets.only(right: AppSizes.dxsPadding),
                 child: Text(
                   'Filter',
                   style: TextStyle(
-                    fontSize: SizeConfig.isTabletLayout
+                    fontSize: SizeConfig.isTablet
                         ? AppSizes.mdText
                         : AppSizes.nmdText,
                     fontWeight: FontWeight.w600,
@@ -75,10 +74,8 @@ class TableHeaderWidget extends StatelessWidget {
               ),
             Image.asset(
               'assets/images/filter-list.png',
-              width:
-                  SizeConfig.isTabletLayout ? AppSizes.mdIcon : AppSizes.lgIcon,
-              height:
-                  SizeConfig.isTabletLayout ? AppSizes.mdIcon : AppSizes.lgIcon,
+              width: SizeConfig.isTablet ? AppSizes.mdIcon : AppSizes.lgIcon,
+              height: SizeConfig.isTablet ? AppSizes.mdIcon : AppSizes.lgIcon,
             ),
           ],
         ),

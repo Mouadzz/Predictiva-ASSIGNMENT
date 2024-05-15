@@ -5,17 +5,17 @@ class FigureStateWidget extends StatelessWidget {
   const FigureStateWidget({
     required this.success,
     required this.percent,
-    required this.isMobileLayout,
+    required this.isMobile,
     super.key,
   });
 
   final bool success;
   final int percent;
-  final bool isMobileLayout;
+  final bool isMobile;
 
   @override
   Widget build(BuildContext context) {
-    final iconSize = isMobileLayout ? AppSizes.smIcon : AppSizes.mdIcon;
+    final iconSize = isMobile ? AppSizes.smIcon : AppSizes.mdIcon;
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: AppSizes.xsPadding,
